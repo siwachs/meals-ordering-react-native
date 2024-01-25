@@ -1,15 +1,28 @@
-import { View, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { View, SafeAreaView, StatusBar } from "react-native";
+import styled from "styled-components";
 import { Searchbar } from "react-native-paper";
 
 import RestaurantInfoCardComponent from "../components/restaurant-info-card.component";
 
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+`;
+const SearchContainer = styled(View)`
+  padding: ${(props) => props.theme.space[3]};
+`;
+const ListContainer = styled(View)`
+  flex: 1;
+  padding: ${(props) => props.theme.space[3]};
+`;
+
 const RestaurantsScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchContainer}>
+    <SafeArea>
+      <SearchContainer>
         <Searchbar />
-      </View>
-      <View style={styles.listContainer}>
+      </SearchContainer>
+      <ListContainer>
         <RestaurantInfoCardComponent
           restaurant={{
             name: "Sample Restaurant",
@@ -24,23 +37,9 @@ const RestaurantsScreen = () => {
             isClosedTemporarily: false,
           }}
         />
-      </View>
-    </SafeAreaView>
+      </ListContainer>
+    </SafeArea>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight, // On IOS it is null
-  },
-  searchContainer: {
-    padding: 16,
-  },
-  listContainer: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default RestaurantsScreen;
