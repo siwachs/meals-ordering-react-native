@@ -34,7 +34,7 @@ const RestaurantsScreen = () => {
             address: "123 Main St",
             isOpenedNow: true,
             rating: 4.5,
-            isClosedTemporarily: false,
+            isClosedTemporarily: true,
           }}
         />
       </ListContainer>
