@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import PropTypes from "prop-types";
 
 const defaultTextStyles = (theme) => `
     font-family: ${theme.fonts.body};
@@ -36,9 +37,13 @@ const variants = { body, hint, error, caption, label };
 
 export default Text = styled.Text`
   ${({ theme }) => defaultTextStyles(theme)}
-  ${(variant, theme) => variants[variant](theme)}
+  ${({ variant, theme }) => variants[variant](theme)}
 `;
 
 Text.defaultProps = {
   variant: "body",
+};
+
+Text.propTypes = {
+  variant: PropTypes.oneOf(["body", "hint", "error", "caption", "label"]),
 };
