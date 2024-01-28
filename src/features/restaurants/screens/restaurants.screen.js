@@ -1,52 +1,50 @@
-import { View, SafeAreaView, StatusBar } from "react-native";
-import styled from "styled-components";
+import { SafeAreaView, StatusBar, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
-
+import styled from "styled-components";
 import RestaurantInfoCardComponent from "../components/restaurant-info-card.component";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
-const SearchContainer = styled(View)`
+const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
-const ListContainer = styled(View)`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-`;
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: { padding: 16 },
+})``;
 
 const restaurantData = [
   {
     name: "Sample Restaurant",
-    icon: "https://image.shutterstock.com/image-photo/mountain-landscape-nepal-tourism-trekking-260nw-569010778.jpg",
+    icon: "https://placekitten.com/200/200",
     photos: [
-      "https://image.shutterstock.com/image-photo/restaurant-cafe-terrace-greek-tavern-260nw-594260513.jpg",
-      "https://image.shutterstock.com/image-photo/delicious-tiramisu-cake-260nw-1652180908.jpg",
+      "https://placekitten.com/300/300",
+      "https://placekitten.com/400/400",
     ],
     address: "123 Main St",
     isOpenedNow: true,
     rating: 4.5,
-    isClosedTemporarily: true,
+    isClosedTemporarily: false,
   },
   {
     name: "Delicious Bites",
-    icon: "https://image.shutterstock.com/image-photo/food-vegetarian-plate-fresh-delicious-260nw-1028266390.jpg",
+    icon: "https://placekitten.com/201/201",
     photos: [
-      "https://image.shutterstock.com/image-photo/assortment-food-colorful-mediterranean-plate-260nw-1350540652.jpg",
-      "https://image.shutterstock.com/image-photo/delicious-fried-chicken-on-plate-260nw-1114050326.jpg",
+      "https://placekitten.com/301/301",
+      "https://placekitten.com/401/401",
     ],
     address: "456 Oak St",
     isOpenedNow: false,
     rating: 4.2,
-    isClosedTemporarily: false,
+    isClosedTemporarily: true,
   },
   {
     name: "Tasty Treats",
-    icon: "https://image.shutterstock.com/image-photo/chef-cooking-260nw-671687455.jpg",
+    icon: "https://placekitten.com/202/202",
     photos: [
-      "https://image.shutterstock.com/image-photo/appetizers-spread-table-various-tapas-260nw-1015089965.jpg",
-      "https://image.shutterstock.com/image-photo/gourmet-homemade-salmon-tartare-260nw-773948217.jpg",
+      "https://placekitten.com/302/302",
+      "https://placekitten.com/402/402",
     ],
     address: "789 Pine St",
     isOpenedNow: true,
@@ -55,10 +53,10 @@ const restaurantData = [
   },
   {
     name: "Savor Delights",
-    icon: "https://image.shutterstock.com/image-photo/italian-chef-cooking-kitchen-260nw-1021733143.jpg",
+    icon: "https://placekitten.com/203/203",
     photos: [
-      "https://image.shutterstock.com/image-photo/plate-salad-fresh-garden-vegetables-260nw-1853209294.jpg",
-      "https://image.shutterstock.com/image-photo/delicious-chocolate-cake-berries-dessert-260nw-1055877551.jpg",
+      "https://placekitten.com/303/303",
+      "https://placekitten.com/403/403",
     ],
     address: "567 Maple St",
     isOpenedNow: true,
@@ -67,10 +65,10 @@ const restaurantData = [
   },
   {
     name: "Spice Fusion",
-    icon: "https://image.shutterstock.com/image-photo/indian-food-curry-chicken-biryani-260nw-1791503121.jpg",
+    icon: "https://placekitten.com/204/204",
     photos: [
-      "https://image.shutterstock.com/image-photo/spicy-indian-chicken-curry-260nw-1741191086.jpg",
-      "https://image.shutterstock.com/image-photo/assorted-indian-food-chicken-lamb-260nw-1050749473.jpg",
+      "https://placekitten.com/304/304",
+      "https://placekitten.com/404/404",
     ],
     address: "890 Elm St",
     isOpenedNow: true,
@@ -79,10 +77,10 @@ const restaurantData = [
   },
   {
     name: "Fresh Flavors",
-    icon: "https://image.shutterstock.com/image-photo/fresh-vegetables-fruits-healthy-diet-260nw-1579779356.jpg",
+    icon: "https://placekitten.com/205/205",
     photos: [
-      "https://image.shutterstock.com/image-photo/vegetarian-buddha-bowl-avocado-quinoa-260nw-1679828140.jpg",
-      "https://image.shutterstock.com/image-photo/tasty-vegetarian-burger-ingredients-260nw-1579780265.jpg",
+      "https://placekitten.com/305/305",
+      "https://placekitten.com/405/405",
     ],
     address: "123 Oak St",
     isOpenedNow: false,
@@ -91,28 +89,19 @@ const restaurantData = [
   },
 ];
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ({ theme }) => {
   return (
     <SafeArea>
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
-      <ListContainer>
-        <RestaurantInfoCardComponent
-          restaurant={{
-            name: "Sample Restaurant",
-            icon: "https://placekitten.com/300/300",
-            photos: [
-              "https://placekitten.com/300/300",
-              "https://placekitten.com/300/300",
-            ],
-            address: "123 Main St",
-            isOpenedNow: true,
-            rating: 4.5,
-            isClosedTemporarily: true,
-          }}
-        />
-      </ListContainer>
+      <RestaurantList
+        data={restaurantData}
+        renderItem={({ item }) => (
+          <RestaurantInfoCardComponent restaurant={item} />
+        )}
+        keyExtractor={(item) => item.name}
+      />
     </SafeArea>
   );
 };
