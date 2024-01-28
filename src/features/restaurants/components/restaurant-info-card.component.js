@@ -19,7 +19,7 @@ const RestaurantInfoCardComponent = ({ restaurant }) => {
     name,
     icon,
     photos,
-    address,
+    vicinity,
     isOpenedNow,
     rating,
     isClosedTemporarily,
@@ -46,7 +46,7 @@ const RestaurantInfoCardComponent = ({ restaurant }) => {
             <Icon source={{ uri: icon }} />
           </SectionEnd>
         </Section>
-        <Address>{address}</Address>
+        <Address>{vicinity}</Address>
       </Info>
     </RestaurantCard>
   );
