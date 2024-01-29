@@ -1,4 +1,5 @@
 import { useState, createContext, useEffect, useMemo } from "react";
+import PropTypes from "prop-types";
 import {
   restaurantsRequest,
   restaurantsTransform,
@@ -6,7 +7,7 @@ import {
 
 export const RestaurantsContext = createContext();
 
-const RestaurantsContextProvider = ({ children }) => {
+export const RestaurantsContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -24,18 +25,24 @@ const RestaurantsContextProvider = ({ children }) => {
           setIsLoading(false);
           setError(error);
         });
-    }, 3000);
+    }, 1600);
   };
 
   useEffect(() => {
     retriveRestaurants();
   }, []);
 
+  const contextValue = useMemo(() => {
+    return { restaurants, isLoading, error };
+  }, [restaurants, isLoading, error]);
+
   return (
-    <RestaurantsContext.Provider value={{ restaurants, isLoading, error }}>
+    <RestaurantsContext.Provider value={contextValue}>
       {children}
     </RestaurantsContext.Provider>
   );
 };
 
-export default RestaurantsContextProvider;
+RestaurantsContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
