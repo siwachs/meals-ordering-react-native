@@ -10,18 +10,24 @@ export const LocationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const onSearch = () => {
+  const onSearch = (searchKeyword) => {
     setIsLoading(true);
-    locationRequest(keyword)
+    setKeyword(searchKeyword);
+    locationRequest(searchKeyword)
       .then(locationTransform)
-      .then()
+      .then((result) => {
+        setIsLoading(false);
+        setLocation(result);
+      })
       .catch((error) => {
         setIsLoading(false);
         setError(error);
       });
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    onSearch(keyword);
+  }, []);
 
   const contextValue = useMemo(() => {
     return { location, isLoading, error, search: onSearch, keyword };
