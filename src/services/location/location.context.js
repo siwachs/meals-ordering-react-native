@@ -26,7 +26,14 @@ export const LocationContextProvider = ({ children }) => {
   };
 
   const contextValue = useMemo(() => {
-    return { location, isLoading, error, search: onSearch, keyword };
+    return {
+      location,
+      isLoading,
+      error,
+      search: onSearch,
+      keyword,
+      setKeyword,
+    };
   }, [location, isLoading, error, keyword]);
 
   return (

@@ -67,6 +67,7 @@
         }
       ],
       "place_id": "some place id 2",
+      "rating": 0,
       "plus_code": {
         "compound_code": "",
         "global_code": ""
