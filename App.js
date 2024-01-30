@@ -50,8 +50,8 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <LocationContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
             <NavigationContainer>
               <Tab.Navigator screenOptions={screenOptions}>
                 <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
@@ -59,8 +59,8 @@ export default function App() {
                 <Tab.Screen name="Map" component={Comp} />
               </Tab.Navigator>
             </NavigationContainer>
-          </LocationContextProvider>
-        </RestaurantsContextProvider>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
