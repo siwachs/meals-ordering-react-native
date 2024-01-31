@@ -13,6 +13,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";
+import MapScreen from "./src/features/restaurants/screens/map.screen";
+import SettingsScreen from "./src/features/restaurants/screens/settings.screen";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICONS = {
@@ -33,10 +35,6 @@ const screenOptions = ({ route }) => {
   };
 };
 
-const Comp = () => {
-  return <Text>Woring path</Text>;
-};
-
 export default function App() {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
@@ -55,8 +53,8 @@ export default function App() {
             <NavigationContainer>
               <Tab.Navigator screenOptions={screenOptions}>
                 <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-                <Tab.Screen name="Settings" component={Comp} />
-                <Tab.Screen name="Map" component={Comp} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+                <Tab.Screen name="Map" component={MapScreen} />
               </Tab.Navigator>
             </NavigationContainer>
           </RestaurantsContextProvider>
