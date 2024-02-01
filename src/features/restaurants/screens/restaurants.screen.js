@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import styled from "styled-components";
 import SafeArea from "../../../components/utility/safe-area.component";
@@ -20,7 +20,7 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
@@ -34,7 +34,9 @@ const RestaurantsScreen = () => {
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => (
-          <RestaurantInfoCardComponent restaurant={item} />
+          <Pressable onPress={() => navigation.navigate("RestaurantDetails")}>
+            <RestaurantInfoCardComponent restaurant={item} />
+          </Pressable>
         )}
         keyExtractor={(item) => item.name}
       />
