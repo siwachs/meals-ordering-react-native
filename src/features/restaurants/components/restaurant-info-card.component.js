@@ -67,6 +67,7 @@ RestaurantInfoCardComponent.propTypes = {
     isOpenedNow: PropTypes.bool,
     rating: PropTypes.number,
     isClosedTemporarily: PropTypes.bool,
+    place_id: PropTypes.string,
   }).isRequired,
 };
 
