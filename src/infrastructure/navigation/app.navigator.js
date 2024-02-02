@@ -7,9 +7,9 @@ import MapScreen from "../../features/restaurants/screens/map.screen";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICONS = {
-  Restaurants: "restaurant",
-  Settings: "settings",
-  Map: "map",
+  RestaurantsTab: "restaurant",
+  SettingsTab: "settings",
+  MapTab: "map",
 };
 
 const screenOptions = ({ route }) => {
@@ -28,9 +28,9 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Map" component={MapScreen} />
+        <Tab.Screen name="RestaurantsTab" component={RestaurantsNavigator} />
+        <Tab.Screen name="SettingsTab" component={SettingsScreen} />
+        <Tab.Screen name="MapTab" component={MapScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
