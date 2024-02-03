@@ -1,11 +1,21 @@
 import { useContext, useState, useEffect } from "react";
-import styled from "styled-components";
+import PropTypes from "prop-types";
+import styled from "styled-components/native";
 import Search from "../components/search.component";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Callout } from "react-native-maps";
+import MapCallOutComponent from "../components/mapcallout.component";
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
-const MapScreen = () => {
+const MapContainer = styled.View`
+  flex: 1;
+`;
+const Map = styled(MapView)`
+  width: 100%;
+  height: 100%;
+`;
+
+const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -34,23 +44,32 @@ const MapScreen = () => {
         {restaurants.map((restaurant) => (
           <Marker
             key={restaurant.name}
+            title={restaurant.name}
             coordinate={{
-              latitude: 37.7749,
-              longitude: -122.4194,
+              latitude: restaurant.geometry.location.lat,
+              longitude: restaurant.geometry.location.lng,
             }}
-          ></Marker>
+          >
+            <Callout
+              onPress={() =>
+                navigation.navigate("RestaurantDetails", {
+                  restaurant,
+                })
+              }
+            >
+              <MapCallOutComponent restaurant={restaurant} />
+            </Callout>
+          </Marker>
         ))}
       </Map>
     </MapContainer>
   );
 };
 
-const MapContainer = styled.View`
-  flex: 1;
-`;
-const Map = styled(MapView)`
-  width: 100%;
-  height: 100%;
-`;
+MapScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default MapScreen;
