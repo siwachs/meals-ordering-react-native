@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import styled from "styled-components";
@@ -48,6 +49,12 @@ const RestaurantsScreen = ({ navigation }) => {
       />
     </SafeArea>
   );
+};
+
+RestaurantsScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default RestaurantsScreen;
