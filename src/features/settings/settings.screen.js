@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import SafeArea from "../../../components/utility/safe-area.component";
+import SafeArea from "../../components/utility/safe-area.component";
 
 const SettingsScreen = () => {
   return (

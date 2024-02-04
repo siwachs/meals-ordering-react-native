@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import CompactRestauranInfoComponent from "../../../components/restaurant/companct-restaurant-info.component";
+import CompactRestauranInfoComponent from "../../../components/restaurant/compact-restaurant-info.component";
 
 const MapCallOutComponent = ({ restaurant }) => {
   return <CompactRestauranInfoComponent restaurant={restaurant} />;

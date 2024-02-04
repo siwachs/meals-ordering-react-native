@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { SvgXml } from "react-native-svg";
 import {
@@ -10,11 +11,12 @@ import {
   Icon,
   Address,
 } from "./restaurant-info-card.styles";
+import Favourite from "../../../components/favourites/favourite.component";
 import Text from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 
-const RestaurantInfoCardComponent = ({ restaurant }) => {
+const RestaurantInfoCardComponent = React.memo(({ restaurant }) => {
   const {
     name,
     icon,
@@ -29,6 +31,7 @@ const RestaurantInfoCardComponent = ({ restaurant }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <CardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
@@ -56,7 +59,7 @@ const RestaurantInfoCardComponent = ({ restaurant }) => {
       </Info>
     </RestaurantCard>
   );
-};
+});
 
 RestaurantInfoCardComponent.propTypes = {
   restaurant: PropTypes.shape({
