@@ -21,8 +21,8 @@ const Item = styled.View`
 `;
 
 const isAndroid = Platform.OS === "android";
-const CompactRestauranInfoComponent = ({ restaurant }) => {
-  const Image = isAndroid ? CompactWebview : CompactImage;
+const CompactRestauranInfoComponent = ({ restaurant, isMap }) => {
+  const Image = isAndroid && isMap ? CompactWebview : CompactImage;
 
   return (
     <Item>
@@ -43,6 +43,7 @@ CompactRestauranInfoComponent.propTypes = {
     isClosedTemporarily: PropTypes.bool,
     place_id: PropTypes.string,
   }).isRequired,
+  isMap: PropTypes.bool,
 };
 
 export default CompactRestauranInfoComponent;

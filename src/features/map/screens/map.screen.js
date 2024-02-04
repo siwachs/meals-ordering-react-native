@@ -10,7 +10,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 const MapContainer = styled.View`
   flex: 1;
 `;
-const Map = styled(MapView)`
+const MapComponent = styled(MapView)`
   width: 100%;
   height: 100%;
 `;
@@ -33,7 +33,7 @@ const MapScreen = ({ navigation }) => {
   return (
     <MapContainer>
       <Search />
-      <Map
+      <MapComponent
         region={{
           latitude: lat,
           longitude: lng,
@@ -61,7 +61,7 @@ const MapScreen = ({ navigation }) => {
             </Callout>
           </Marker>
         ))}
-      </Map>
+      </MapComponent>
     </MapContainer>
   );
 };

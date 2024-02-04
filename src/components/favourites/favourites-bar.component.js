@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import CompactRestauranInfoComponent from "../restaurant/compact-restaurant-info.component";
 import Spacer from "../spacer/spacer.component";
 import Text from "../typography/text.component";
@@ -8,7 +9,7 @@ const FavouritesWrapper = styled.View`
   padding: 10px;
 `;
 const FavouritesView = styled.View`
-  column-gap: 10px;
+  margin: 10px 10px 0 0;
 `;
 
 const FavouritesBar = ({ favourites, goToDetails }) => {
@@ -37,6 +38,11 @@ const FavouritesBar = ({ favourites, goToDetails }) => {
       </ScrollView>
     </FavouritesWrapper>
   );
+};
+
+FavouritesBar.propTypes = {
+  favourites: PropTypes.array.isRequired,
+  goToDetails: PropTypes.func.isRequired,
 };
 
 export default FavouritesBar;
