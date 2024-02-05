@@ -1,11 +1,20 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { Button } from "react-native-paper";
+import {
+  AccountBackground,
+  AccountContainer,
+  AccountCover,
+} from "../components/account.styles";
 
 const AccountScreen = () => {
   return (
-    <View>
-      <Text>AccountScreen</Text>
-    </View>
+    <AccountBackground>
+      <AccountCover />
+      <AccountContainer>
+        <Button icon="lock-open-outline" mode="contained" onPress={() => {}}>
+          Login
+        </Button>
+      </AccountContainer>
+    </AccountBackground>
   );
 };
 
