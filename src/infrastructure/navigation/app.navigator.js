@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RestaurantsNavigator from "./restaurants.navigator";
@@ -26,25 +25,23 @@ const screenOptions = ({ route }) => {
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen
-          name="RestaurantsTab"
-          options={{ tabBarLabel: "Restaurants" }}
-          component={RestaurantsNavigator}
-        />
-        <Tab.Screen
-          name="MapTab"
-          options={{ tabBarLabel: "Map" }}
-          component={MapScreen}
-        />
-        <Tab.Screen
-          name="SettingsTab"
-          options={{ tabBarLabel: "Settings" }}
-          component={SettingsScreen}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen
+        name="RestaurantsTab"
+        options={{ tabBarLabel: "Restaurants" }}
+        component={RestaurantsNavigator}
+      />
+      <Tab.Screen
+        name="MapTab"
+        options={{ tabBarLabel: "Map" }}
+        component={MapScreen}
+      />
+      <Tab.Screen
+        name="SettingsTab"
+        options={{ tabBarLabel: "Settings" }}
+        component={SettingsScreen}
+      />
+    </Tab.Navigator>
   );
 };
 
