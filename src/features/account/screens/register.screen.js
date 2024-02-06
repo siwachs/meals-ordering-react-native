@@ -1,11 +1,7 @@
-import { View, Text } from "react-native";
+import { AccountBackground } from "../components/account.styles";
 
 const RegisterScreen = () => {
-  return (
-    <View>
-      <Text>RegisterScreen</Text>
-    </View>
-  );
+  return <AccountBackground></AccountBackground>;
 };
 
 export default RegisterScreen;
