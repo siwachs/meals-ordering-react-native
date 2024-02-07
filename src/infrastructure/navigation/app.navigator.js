@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RestaurantsNavigator from "./restaurants.navigator";
 import MapScreen from "../../features/map/screens/map.screen";
-import SettingsScreen from "../../features/settings/settings.screen";
+import SettingsScreen from "../../features/settings/screens/settings.screen";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICONS = {

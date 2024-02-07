@@ -1,7 +1,11 @@
 import { createContext, useState, useMemo } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PropTypes from "prop-types";
-import { loginRequest, registerRequest } from "./authentication.service";
+import {
+  loginRequest,
+  registerRequest,
+  signOutRequest,
+} from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -52,6 +56,11 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  const onLogout = () => {
+    setUser(null);
+    signOutRequest();
+  };
+
   const contextValue = useMemo(() => {
     return {
       user,
@@ -59,6 +68,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       error,
       onLogin,
       onRegister,
+      onLogout,
     };
   }, [user, isLoading, error]);
 
