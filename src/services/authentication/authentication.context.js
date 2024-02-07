@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import PropTypes from "prop-types";
 import {
@@ -10,30 +10,35 @@ import {
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const auth = getAuth();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoading(false);
       setUser(user);
-    } else {
-      setIsLoading(false);
-    }
-  });
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
-      .then((user) => {
-        setUser(user);
-      })
+      .then((user) => {})
       .catch((error) => {
         setError(error.message);
       })
       .finally(() => {
+        if (error) {
+          setTimeout(() => {
+            setError(null);
+          }, 3000);
+        }
         setIsLoading(false);
       });
   };
@@ -45,19 +50,21 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
     setIsLoading(true);
     registerRequest(email, password)
-      .then((user) => {
-        setUser(user);
-      })
+      .then((user) => {})
       .catch((error) => {
         setError(error.message);
       })
       .finally(() => {
+        if (error) {
+          setTimeout(() => {
+            setError(null);
+          }, 3000);
+        }
         setIsLoading(false);
       });
   };
 
   const onLogout = () => {
-    setUser(null);
     signOutRequest();
   };
 

@@ -1,15 +1,17 @@
-import { createContext, useMemo, useState, useEffect } from "react";
+import { createContext, useMemo, useState, useEffect, useContext } from "react";
+import { AuthenticationContext } from "../authentication/authentication.context";
 import PropTypes from "prop-types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const FavouritesContext = createContext();
 
 export const FavouritesContextProvider = ({ children }) => {
+  const { user } = useContext(AuthenticationContext);
   const [favourites, setFavourites] = useState([]);
   const saveFavourites = async (items) => {
     try {
       const jsonItems = JSON.stringify(items);
-      await AsyncStorage.setItem("@favourites", jsonItems);
+      await AsyncStorage.setItem(`@favourites-${user?.uid}`, jsonItems);
     } catch (error) {
       alert(error.message);
     }
