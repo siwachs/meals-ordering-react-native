@@ -30,7 +30,20 @@ const AuthButton = styled(Button).attrs({
   padding: ${(props) => props.theme.space[2]};
 `;
 
-const AuthInput = styled(TextInput)``;
+const AuthInput = styled(TextInput)`
+  width: 300px;
+`;
+
+const Title = styled.Text`
+  font-size: 30px;
+`;
+
+const ErrorContainer = styled.View`
+  max-width: 300px;
+  align-items: center;
+  align-self: center;
+  margin: ${(props) => props.theme.space[2]} 0;
+`;
 
 export {
   AccountBackground,
@@ -38,4 +51,6 @@ export {
   AccountContainer,
   AuthButton,
   AuthInput,
+  Title,
+  ErrorContainer,
 };

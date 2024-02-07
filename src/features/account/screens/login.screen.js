@@ -5,14 +5,17 @@ import {
   AccountContainer,
   AuthButton,
   AuthInput,
+  ErrorContainer,
 } from "../components/account.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import Text from "../../../components/typography/text.component";
 import { space } from "../../../infrastructure/theme/spacing";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin } = useContext(AuthenticationContext);
+  const { onLogin, isLoading, error } = useContext(AuthenticationContext);
+  console.log(error);
 
   return (
     <AccountBackground>
@@ -34,6 +37,9 @@ const LoginScreen = () => {
           secureTextEntry
           onChangeText={(p) => setPassword(p)}
         />
+        <ErrorContainer>
+          <Text variant="error">{error}</Text>
+        </ErrorContainer>
         <AuthButton
           icon="lock-open-outline"
           mode="contained"

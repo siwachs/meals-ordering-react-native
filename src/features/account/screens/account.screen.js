@@ -3,6 +3,7 @@ import {
   AccountContainer,
   AccountCover,
   AuthButton,
+  Title,
 } from "../components/account.styles";
 import { space } from "../../../infrastructure/theme/spacing";
 
@@ -10,6 +11,7 @@ const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <Title>Meals Ordering</Title>
       <AccountContainer rowGap={space[2]}>
         <AuthButton
           icon="lock-open-outline"

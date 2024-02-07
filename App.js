@@ -1,4 +1,5 @@
 import { initializeApp, getApp, getApps } from "firebase/app";
+import { firebaseApiKey } from "@env";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -14,7 +15,7 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import Navigation from "./src/infrastructure/navigation";
 
 const firebaseConfig = {
-  apiKey: process.env.firebaseApiKey,
+  apiKey: firebaseApiKey,
   authDomain: "meals-ordering-a817b.firebaseapp.com",
   projectId: "meals-ordering-a817b",
   storageBucket: "meals-ordering-a817b.appspot.com",
