@@ -15,7 +15,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, isLoading, error } = useContext(AuthenticationContext);
-  console.log(error);
 
   return (
     <AccountBackground>
@@ -37,9 +36,11 @@ const LoginScreen = () => {
           secureTextEntry
           onChangeText={(p) => setPassword(p)}
         />
-        <ErrorContainer>
-          <Text variant="error">{error}</Text>
-        </ErrorContainer>
+        {error && (
+          <ErrorContainer>
+            <Text variant="error">{error}</Text>
+          </ErrorContainer>
+        )}
         <AuthButton
           icon="lock-open-outline"
           mode="contained"
