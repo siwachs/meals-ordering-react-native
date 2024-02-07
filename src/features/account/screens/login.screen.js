@@ -14,7 +14,7 @@ import { space } from "../../../infrastructure/theme/spacing";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, isLoading, error } = useContext(AuthenticationContext);
+  const { onLogin, error } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>

@@ -1,7 +1,65 @@
-import { AccountBackground } from "../components/account.styles";
+import { useContext, useState } from "react";
+import {
+  AccountBackground,
+  AccountCover,
+  AccountContainer,
+  AuthButton,
+  AuthInput,
+  ErrorContainer,
+} from "../components/account.styles";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import Text from "../../../components/typography/text.component";
+import { space } from "../../../infrastructure/theme/spacing";
 
 const RegisterScreen = () => {
-  return <AccountBackground></AccountBackground>;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
+  const { onRegister, error } = useContext(AuthenticationContext);
+
+  return (
+    <AccountBackground>
+      <AccountCover />
+      <AccountContainer rowGap={space[3]}>
+        <AuthInput
+          label="E-mail"
+          value={email}
+          autoCapitalize="none"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          onChangeText={(e) => setEmail(e)}
+        />
+        <AuthInput
+          label="Password"
+          value={password}
+          autoCapitalize="none"
+          textContentType="password"
+          secureTextEntry
+          onChangeText={(p) => setPassword(p)}
+        />
+        <AuthInput
+          label="Conform Password"
+          value={repeatedPassword}
+          autoCapitalize="none"
+          textContentType="password"
+          secureTextEntry
+          onChangeText={(p) => setRepeatedPassword(p)}
+        />
+        {error && (
+          <ErrorContainer>
+            <Text variant="error">{error}</Text>
+          </ErrorContainer>
+        )}
+        <AuthButton
+          icon="email"
+          mode="contained"
+          onPress={() => onRegister(email, password, repeatedPassword)}
+        >
+          Register
+        </AuthButton>
+      </AccountContainer>
+    </AccountBackground>
+  );
 };
 
 export default RegisterScreen;

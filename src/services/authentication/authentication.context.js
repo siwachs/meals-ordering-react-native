@@ -29,7 +29,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       return;
     }
     setIsLoading(true);
-    registerRequest
+    registerRequest(email, password)
       .then((user) => {
         setUser(user);
       })
