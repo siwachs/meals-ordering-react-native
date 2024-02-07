@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import {
   AccountBackground,
   AccountCover,
@@ -15,7 +16,7 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-  const { onRegister, error } = useContext(AuthenticationContext);
+  const { onRegister, isLoading, error } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -50,13 +51,17 @@ const RegisterScreen = () => {
             <Text variant="error">{error}</Text>
           </ErrorContainer>
         )}
-        <AuthButton
-          icon="email"
-          mode="contained"
-          onPress={() => onRegister(email, password, repeatedPassword)}
-        >
-          Register
-        </AuthButton>
+        {isLoading ? (
+          <ActivityIndicator animating={true} color={MD2Colors.blue300} />
+        ) : (
+          <AuthButton
+            icon="email"
+            mode="contained"
+            onPress={() => onRegister(email, password, repeatedPassword)}
+          >
+            Register
+          </AuthButton>
+        )}
       </AccountContainer>
     </AccountBackground>
   );
