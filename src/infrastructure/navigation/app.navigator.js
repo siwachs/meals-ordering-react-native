@@ -3,6 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RestaurantsNavigator from "./restaurants.navigator";
 import MapScreen from "../../features/map/screens/map.screen";
 import SettingsScreen from "../../features/settings/screens/settings.screen";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICONS = {
@@ -25,23 +28,29 @@ const screenOptions = ({ route }) => {
 
 const AppNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen
-        name="RestaurantsTab"
-        options={{ tabBarLabel: "Restaurants" }}
-        component={RestaurantsNavigator}
-      />
-      <Tab.Screen
-        name="MapTab"
-        options={{ tabBarLabel: "Map" }}
-        component={MapScreen}
-      />
-      <Tab.Screen
-        name="SettingsTab"
-        options={{ tabBarLabel: "Settings" }}
-        component={SettingsScreen}
-      />
-    </Tab.Navigator>
+    <FavouritesContextProvider>
+      <LocationContextProvider>
+        <RestaurantsContextProvider>
+          <Tab.Navigator screenOptions={screenOptions}>
+            <Tab.Screen
+              name="RestaurantsTab"
+              options={{ tabBarLabel: "Restaurants" }}
+              component={RestaurantsNavigator}
+            />
+            <Tab.Screen
+              name="MapTab"
+              options={{ tabBarLabel: "Map" }}
+              component={MapScreen}
+            />
+            <Tab.Screen
+              name="SettingsTab"
+              options={{ tabBarLabel: "Settings" }}
+              component={SettingsScreen}
+            />
+          </Tab.Navigator>
+        </RestaurantsContextProvider>
+      </LocationContextProvider>
+    </FavouritesContextProvider>
   );
 };
 

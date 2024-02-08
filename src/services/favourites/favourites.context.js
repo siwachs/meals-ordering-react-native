@@ -8,18 +8,18 @@ export const FavouritesContext = createContext();
 export const FavouritesContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
   const [favourites, setFavourites] = useState([]);
-  const saveFavourites = async (items) => {
+  const saveFavourites = async (items, uid) => {
     try {
       const jsonItems = JSON.stringify(items);
-      await AsyncStorage.setItem(`@favourites-${user?.uid}`, jsonItems);
+      await AsyncStorage.setItem(`@favourites-${uid}`, jsonItems);
     } catch (error) {
       alert(error.message);
     }
   };
 
-  const loadFavourites = async () => {
+  const loadFavourites = async (uid) => {
     try {
-      const items = await AsyncStorage.getItem("@favourites");
+      const items = await AsyncStorage.getItem(`@favourites-${uid}`);
       if (items !== null) {
         setFavourites(JSON.parse(items));
       }
@@ -40,12 +40,16 @@ export const FavouritesContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    loadFavourites();
-  }, []);
+    if (user) {
+      loadFavourites(user.uid);
+    }
+  }, [user]);
 
   useEffect(() => {
-    saveFavourites(favourites);
-  }, [favourites]);
+    if (user) {
+      saveFavourites(favourites, user.uid);
+    }
+  }, [favourites, user]);
 
   const contextValue = useMemo(() => {
     return {
