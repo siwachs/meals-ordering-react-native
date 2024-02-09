@@ -12,7 +12,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import Text from "../../../components/typography/text.component";
 import { space } from "../../../infrastructure/theme/spacing";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, isLoading, error } = useContext(AuthenticationContext);
@@ -54,6 +54,9 @@ const LoginScreen = () => {
           </AuthButton>
         )}
       </AccountContainer>
+      <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        Back
+      </AuthButton>
     </AccountBackground>
   );
 };

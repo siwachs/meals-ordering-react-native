@@ -21,7 +21,7 @@ const AccountContainer = styled.View`
   ${(props) => props.rowGap && `row-gap: ${props.rowGap};`}
   background-color: rgba(255, 255, 255, 0.7);
   padding: ${(props) => props.theme.space[4]};
-  margin-top: ${(props) => props.theme.space[2]};
+  margin: ${(props) => props.theme.space[2]} 0;
 `;
 
 const AuthButton = styled(Button).attrs({
@@ -45,6 +45,14 @@ const ErrorContainer = styled.View`
   margin: ${(props) => props.theme.space[2]} 0;
 `;
 
+const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
+`;
+
 export {
   AccountBackground,
   AccountCover,
@@ -53,4 +61,5 @@ export {
   AuthInput,
   Title,
   ErrorContainer,
+  AnimationWrapper,
 };

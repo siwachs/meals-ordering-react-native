@@ -12,7 +12,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import Text from "../../../components/typography/text.component";
 import { space } from "../../../infrastructure/theme/spacing";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
@@ -63,6 +63,9 @@ const RegisterScreen = () => {
           </AuthButton>
         )}
       </AccountContainer>
+      <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        Back
+      </AuthButton>
     </AccountBackground>
   );
 };

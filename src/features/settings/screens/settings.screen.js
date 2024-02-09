@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { View, Button } from "react-native";
-import SafeArea from "../../../components/utility/safe-area.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import SafeArea from "../../../components/utility/safe-area.component";
 
 const SettingsScreen = () => {
   const { onLogout } = useContext(AuthenticationContext);
