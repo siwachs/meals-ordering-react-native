@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+  margin-top: ${(props) =>
+    !props.hasHeader && StatusBar.currentHeight
+      ? `${StatusBar.currentHeight}px`
+      : 0};
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 

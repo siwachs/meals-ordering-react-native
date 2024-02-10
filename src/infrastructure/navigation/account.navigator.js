@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 
 const AccountNatigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerMode: "none" }}>
       <Stack.Screen name="Main" component={AccountScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
